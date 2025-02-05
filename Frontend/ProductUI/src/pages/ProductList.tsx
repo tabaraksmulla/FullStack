@@ -35,41 +35,40 @@ const ProductList: React.FC = () => {
     if (loading) return <p>Loading products...</p>;
 
     return (
-        <div>
-            <h2>Product List</h2>
-            <table border={1} cellPadding={5}>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Product Type</th>
-                        <th>Colours</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.length > 0 ? (
-                        products.map((product) => (
-                            <tr key={product.id}>
-                                <td>{product.id}</td>
-                                <td>{product.name}</td>
-                                <td>{product.productType}</td>
-                                <td>
-                                    {product.colours && product.colours.length > 0
+        <div style={{ maxWidth: "800px", margin: "0 auto", padding: "20px", border: "1px solid #ddd", borderRadius: "10px", boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)" }}>
+            <h2 style={{ textAlign: "center", marginBottom: "20px" }}>View Products</h2>
+
+            {loading ? (
+                <p>Loading products...</p>
+            ) : (
+                <table style={{ width: "100%", borderCollapse: "collapse" }}>
+                    <thead>
+                        <tr style={{ backgroundColor: "#f8f9fa", textAlign: "left" }}>
+                            <th style={{ padding: "10px", borderBottom: "2px solid #ddd" }}>ID</th>
+                            <th style={{ padding: "10px", borderBottom: "2px solid #ddd" }}>Product Name</th>
+                            <th style={{ padding: "10px", borderBottom: "2px solid #ddd" }}>Type</th>
+                            <th style={{ padding: "10px", borderBottom: "2px solid #ddd" }}>Colours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((product, index) => (
+                            <tr key={product.id} style={{ backgroundColor: index % 2 === 0 ? "#ffffff" : "#f2f2f2" }}>
+                                <td style={{ padding: "10px", borderBottom: "1px solid #ddd" }}>{product.id}</td>
+                                <td style={{ padding: "10px", borderBottom: "1px solid #ddd" }}>{product.name}</td>
+                                <td style={{ padding: "10px", borderBottom: "1px solid #ddd" }}>{product.productType}</td>
+                                <td style={{ padding: "10px", borderBottom: "1px solid #ddd" }}>
+                                    {Array.isArray(product.colours) && product.colours.length > 0
                                         ? product.colours.join(", ")
                                         : "No Colours"}
                                 </td>
-
                             </tr>
-                        ))
-                    ) : (
-                        <tr>
-                            <td colSpan={4}>No products found.</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
+
 };
 
 export default ProductList;

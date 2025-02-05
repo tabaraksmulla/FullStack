@@ -34,7 +34,7 @@ namespace ProductApi.Controllers
                    Id = p.Id,
                    Name = p.Name,
                    ProductType = p.ProductType.Name,
-                   Colours = p.ProductColours.Select(pc => pc.Colour.Name).ToList()
+                   Colours = p.ProductColours.Select(pc => pc.Colour.Name).ToList() ?? new List<string>()
                })
                .ToListAsync();
 

@@ -67,17 +67,26 @@ const CreateProduct: React.FC = () => {
     if (loading) return <p>Loading form data...</p>;
 
     return (
-        <div>
-            <h2>Create a New Product</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label>Product Name:</label>
-                    <input {...register("name", { required: true })} />
+        <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px", border: "1px solid #ddd", borderRadius: "10px", boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)" }}>
+            <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Create a New Product</h2>
+
+            <form onSubmit={handleSubmit(onSubmit)} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <label style={{ fontWeight: "bold" }}>Product Name:</label>
+                    <input
+                        {...register("name", { required: true })}
+                        placeholder="Enter product name"
+                        style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+                    />
                 </div>
 
-                <div>
-                    <label>Product Type:</label>
-                    <select {...register("productTypeId", { required: true })}>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <label style={{ fontWeight: "bold" }}>Product Type:</label>
+                    <select
+                        {...register("productTypeId", { required: true })}
+                        style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px" }}
+                    >
                         <option value="">Select a Type</option>
                         {productTypes.map((type) => (
                             <option key={type.id} value={type.id}>
@@ -87,9 +96,13 @@ const CreateProduct: React.FC = () => {
                     </select>
                 </div>
 
-                <div>
-                    <label>Colours:</label>
-                    <select {...register("colourIds", { required: true })} multiple>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <label style={{ fontWeight: "bold" }}>Colours:</label>
+                    <select
+                        {...register("colourIds", { required: true })}
+                        multiple
+                        style={{ padding: "8px", border: "1px solid #ccc", borderRadius: "5px", height: "100px" }}
+                    >
                         {colours.map((colour) => (
                             <option key={colour.id} value={colour.id}>
                                 {colour.name}
@@ -98,10 +111,13 @@ const CreateProduct: React.FC = () => {
                     </select>
                 </div>
 
-                <button type="submit">Create Product</button>
+                <button type="submit" style={{ padding: "10px", backgroundColor: "#007bff", color: "#fff", fontSize: "16px", fontWeight: "bold", border: "none", borderRadius: "5px", cursor: "pointer" }}>
+                    Create Product
+                </button>
             </form>
         </div>
     );
+
 };
 
 export default CreateProduct;

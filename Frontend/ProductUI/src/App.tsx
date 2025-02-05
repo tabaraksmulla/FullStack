@@ -1,16 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ProductList from "./pages/ProductList";
 import CreateProduct from "./pages/CreateProduct";
+import Header from "./components/Header";
 
-const App: React.FC = () => {
+function App() {
     return (
         <Router>
+            <Header />
             <div style={{ padding: "20px" }}>
-                <nav>
-                    <Link to="/" style={{ marginRight: "10px" }}>View Products</Link>
-                    <Link to="/create">Create Product</Link>
-                </nav>
                 <Routes>
                     <Route path="/" element={<ProductList />} />
                     <Route path="/create" element={<CreateProduct />} />
@@ -18,6 +16,6 @@ const App: React.FC = () => {
             </div>
         </Router>
     );
-};
+}
 
 export default App;
